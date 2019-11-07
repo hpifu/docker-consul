@@ -1,0 +1,26 @@
+version: "3.5"
+services:
+  consul:
+    hostname: consul
+    image: consul:1.6.1
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    # ports:
+    #   - "8500:8500"
+    #   - "8600:8600"
+    user: root
+    volumes:
+      - "/var/docker/consul/data:/consul/data"
+    environment:
+      - CONSUL_BOOTSTRAP_EXPECT=1
+      - CONSUL_CLIENT_LAN_ADDRESS=0.0.0.0
+      - CONSUL_ENABLE_UI=true
+      - CONSUL_ENABLE_SERVER=true
+    networks:
+      - consulnet
+
+networks:
+  consulnet:
+    name: consulnet
