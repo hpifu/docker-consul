@@ -19,8 +19,8 @@ services:
       - CONSUL_ENABLE_UI=true
       - CONSUL_ENABLE_SERVER=true
     networks:
-      - consulnet
-
+      - online
 networks:
-  consulnet:
-    name: consulnet
+  online:
+    external: true
+    name: online
